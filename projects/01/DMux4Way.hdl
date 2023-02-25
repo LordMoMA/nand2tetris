@@ -11,10 +11,21 @@
  *                {0, 0, 0, in} if sel == 11
  */
 
+ /*
+ For example, if Sel0 is 0 and Sel1 is 1, the demultiplexer selects Output 1. The value of Input is then passed through to Output 1, while Output 0, Output 2, and Output 3 are set to 0. 
+ The behavior of the demultiplexer is determined by the truth table shown above, which defines the output values for all possible combinations of Sel0, Sel1, and Input.
+ */
+
+ // Note that indexing in buses start from the right.
+
 CHIP DMux4Way {
     IN in, sel[2];
     OUT a, b, c, d;
 
     PARTS:
     // Put your code here:
+    DMux(in=in, sel=sel[1], a=o1, b=o2);
+    DMux(in=o1, sel=sel[0], a=a, b=b);
+    DMux(in=o2, sel=sel[0], a=c, b=d);
+    
 }
