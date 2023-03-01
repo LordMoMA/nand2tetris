@@ -29,6 +29,34 @@ CHIP Add16 {
     FullAdder(a=a[12], b=b[12], c=c11, sum=out[12], carry=c12);
     FullAdder(a=a[13], b=b[13], c=c12, sum=out[13], carry=c13);
     FullAdder(a=a[14], b=b[14], c=c13, sum=out[14], carry=c14);
-    FullAdder(a=a[15], b=b[15], c=c14, sum=out[15], carry=carry);
-   
+    FullAdder(a=a[15], b=b[15], c=c14, sum=out[15], carry=carry); 
 }
+  /* The code can be generated using a simple Python script. */
+  
+/*
+# Set the length of the inputs and outputs
+n = 16
+
+# Define the inputs and outputs as lists of strings
+a = ['a[{}]'.format(i) for i in range(n)]
+b = ['b[{}]'.format(i) for i in range(n)]
+out = ['out[{}]'.format(i) for i in range(n)]
+carry = 'carry'
+
+# Create a string to store the generated code
+code = ''
+
+# Generate the code for each full adder
+c_prev = carry
+for i in range(n):
+    c_curr = 'c{}'.format(i)
+    s_curr = 'out[{}]'.format(i)
+    code += 'FullAdder(a={}, b={}, c={}, sum={}, carry={});\n'.format(a[i], b[i], c_prev, s_curr, c_curr)
+    c_prev = c_curr
+
+# Generate the code for the half adder
+code = 'HalfAdder(a={}, b={}, sum={}, carry={});\n'.format(a[0], b[0], out[0], carry) + code
+
+print(code)
+
+*/
