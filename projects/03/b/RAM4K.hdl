@@ -15,11 +15,6 @@ CHIP RAM4K {
     OUT out[16];
 
     PARTS:
-    CHIP RAM4K {
-    IN in[16], load, address[12];
-    OUT out[16];
-
-    PARTS:
     DMux8Way (in=load, sel=address[0..2], a=loadA, b=loadB, c=loadC, d=loadD, e=loadE, f=loadF, g=loadG, h=loadH);
 
     RAM512 (in=in, load=loadA, address=address[3..11], out=RAMA);
